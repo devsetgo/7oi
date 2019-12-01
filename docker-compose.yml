@@ -1,0 +1,43 @@
+version: '2'
+networks:
+  web:
+    external: true
+services:
+  devsetgo:
+    build: ./
+    # image: nginx:stable-alpine
+    image: mikeryan56/7oi:19.8.10
+    # image: mikeryan56/dsg:latest
+    container_name: "sevenofi"
+    # environment:
+      # - VIRTUAL_HOST=sevenofi.com
+      # - LETSENCRYPT_HOST=sevenofi.com
+      # - LETSENCRYPT_EMAIL=mikeryan56@gmail.com
+    # ports:
+    # - "49999:80"
+    # volumes:
+    #   - "./public:/usr/share/nginx/html"
+    restart: always
+    ports:
+    - "80"
+    volumes:
+    - .:/code
+
+    # if using jwilder/nginx-proxy
+    # environment:
+    # - VIRTUAL_HOST=sevenofi.com
+    # - LETSENCRYPT_HOST=sevenofi.com
+    
+    #if using traefik
+    labels:
+    # - traefik.backend=7oi
+    # - traefik.frontend.rule=Host:sevenofi.com
+    # - traefik.docker.network=web
+    # - traefik.port=80
+    - "traefik.enable=true"
+    - "traefik.http.routers.7oi.rule=Host(`sevenofi.com`)"
+    - "traefik.http.routers.7oi.entrypoints=websecure"
+    - "traefik.http.routers.7oi.tls.certresolver=mytlschallenge"
+
+    networks:
+      - web
