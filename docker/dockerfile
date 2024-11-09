@@ -6,6 +6,8 @@ COPY /public /usr/share/nginx/html
 # Expose port 80
 EXPOSE 80
 
+# Define environment variable
+ENV APP_VERSION=2024-11-08
 
 # Set maintainer label
 LABEL maintainer="Mike Ryan"

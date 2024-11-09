@@ -1,0 +1,16 @@
+version_format = "{current_date}-{build_count:03}"
+timezone = "America/New_York"
+git_tag = false
+auto_commit = false
+
+[[file]]
+path = "makefile"
+file_type = "makefile"
+variable = "APP_VERSION"
+version_standard = "default"
+
+[[file]]
+path = "docker/dockerfile"
+file_type = "dockerfile"
+variable = "env.APP_VERSION"
+version_standard = "default"
