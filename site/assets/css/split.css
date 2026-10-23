@@ -139,6 +139,8 @@ body.page-template-page-fullsingle-split p {
 .fs-split .split-image {
   width: 50%;
   height: 100vh;
+  background-image: url("../../images/sevenofi1-678x1024.jpg");
+  background-position: top left;
   background-size: cover;
 }
 @media (max-width: 800px) {

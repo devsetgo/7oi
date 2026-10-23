@@ -1,27 +1,21 @@
 # Seven of I Static Site
-Hugo site for SevenofI.com
+Plain HTML site for SevenofI.com, served by nginx in a docker container.
+
+The pages are in `site/`: edit `site/index.html` (the book) and `site/valerie/index.html` (about the author) directly.
 
 ### Build and Deploy Site
 
-Build Hugo site and then build and push the docker container.
+The version comes from `APP_VERSION` in the makefile.
 
 ```bash
-
 # install bumpcalver
 pip install --upgrade bumpcalver
-# build the site
-hugo
-# bump the calendar version
+# bump the calendar version (updates makefile and docker/dockerfile)
 make bump
-# build the docker container
-docker build --no-cache -t 7oi:2024-11-08 .
-# tag the docker container
-docker tag 7oi:2024-11-08 mikeryan56/7oi:2024-11-08
-# push the docker container
-docker push mikeryan56/7oi:2024-11-08
-# tag the docker container as latest
-docker tag 7oi:2024-11-08 mikeryan56/7oi:latest
-# push the docker container as latest
-docker push mikeryan56/7oi:latest
-
+# optional: build and preview the container at http://localhost:5000
+make docker-build docker-run
+# log in to docker hub (only needed once per machine)
+make docker-login
+# build the container and push both the version tag and latest
+make release
 ```
